@@ -67,7 +67,9 @@ class QuizPlay extends React.Component {
       const { questions, currentQuestion, nextQuestion, previousQuestion } = this.state;
       this.displayQuestions(questions, currentQuestion, nextQuestion, previousQuestion);
       this.startTimer ();
-
+    }
+    componentWillUnmount () {
+      clearInterval(this.interval);
     }
 
     // this method calls whenever the question changes
@@ -91,7 +93,7 @@ class QuizPlay extends React.Component {
         }, () => {
          // we use this to bring back our options when the question is changed 
           this.showOptions();
-          this.handleDisableButton(); 
+          this.handleDisableButton();
         });
       }
     };
@@ -188,11 +190,16 @@ class QuizPlay extends React.Component {
       this.setState(prevState => ({
         wrongAnswers: prevState.wrongAnswers + 1,
         currentQuestionIndex: prevState.currentQuestionIndex + 1,
-        numberOfAnsweredQuestions: prevState.numberOfAnsweredQuestions + 1
+        numberOfAnsweredQuestions: prevState.numberOfAnsweredQuestions + 1,
+    /*     numberOfAnsweredQuestions + 1 */
       }), () => {
-        this.displayQuestions(this.state.questions, this.state.currentQuestion, this.state.nextQuestion, this.state.previousQuestion);
-      });
-    }
+        if (this.state.nextQuestion === undefined) {
+            this.endGame();
+        } else {
+            this.displayQuestions(this.state.questions, this.state.currentQuestion, this.state.nextQuestion, this.state.previousQuestion)
+        }
+    });
+}
 
 
 
@@ -209,7 +216,11 @@ class QuizPlay extends React.Component {
         currentQuestionIndex: prevState.currentQuestionIndex + 1,
         numberOfAnsweredQuestions: prevState.numberOfAnsweredQuestions + 1
       }), () => {
-        this.displayQuestions(this.state.questions, this.state.currentQuestion, this.state.nextQuestion, this.state.previousQuestion); // to change to another question 
+          if (this.state.nextQuestion === undefined) {
+            this.endGame();
+        } else {
+            this.displayQuestions(this.state.questions, this.state.currentQuestion, this.state.nextQuestion, this.state.previousQuestion);
+        } // to change to another question 
       });
     }
     // to undo the effect of hiding options due to using hints and we should call it at the end of display method options
@@ -362,6 +373,24 @@ class QuizPlay extends React.Component {
       }
   }
 
+  endGame = () => {
+    alert('Quiz has eneded!');
+    const { state } = this;
+    const playerStats = {
+        score: state.score,
+        numberOfQuestions: state.numberOfQuestions,
+        numberOfAnsweredQuestions: state.correctAnswers + state.wrongAnswers,
+        correctAnswers: state.correctAnswers,
+        wrongAnswers: state.wrongAnswers,
+        fiftyFiftyUsed: 2 - state.fiftyFifty,
+        hintsUsed: 5 - state.hints
+    };
+    setTimeout(() => {
+        /* this.props.history.push('/play/quizSummary', playerStats); */
+        this.props.history.push('/');
+    }, 1000);
+}
+
   render() {
     const { 
       currentQuestion, 
@@ -390,8 +419,8 @@ class QuizPlay extends React.Component {
                   <div className="lifeLine-container" >
                     <p>
                       <span className="lifeLine" >
-                        <IconButton color="inherit">
-                          <FavoriteBorderOutlinedIcon onClick={this.handleFiftyFifty} className="lifeLine" /> </IconButton>
+                        <IconButton  className="lifeLine-icon" color="inherit">
+                          <FavoriteBorderOutlinedIcon  onClick={this.handleFiftyFifty} className="lifeLine" /> </IconButton>
                         {fiftyFifty}
                       </span>
                     </p>
@@ -405,7 +434,7 @@ class QuizPlay extends React.Component {
                       <span className="lifeLine" > {currentQuestionIndex + 1} of {numberOfQuestions}</span>
                     </p>
                     <p>
-                      <span className="lifeLine" > <IconButton color="inherit"> <HourglassEmptyOutlinedIcon />  {time.minutes}:{time.seconds}
+                      <span className="lifeLine" className="lifeLine-icon" > <IconButton color="inherit"> <HourglassEmptyOutlinedIcon  />  {time.minutes}:{time.seconds}
                         </IconButton></span>
                     </p>
                   </div>
