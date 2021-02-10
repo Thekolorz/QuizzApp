@@ -188,3 +188,15 @@ a.btn,
 .btn-default:hover { 
   background:#102dce !important;
 }
+.disable {
+  color: #868383!important;
+  box-shadow: none !important;
+  pointer-events: none;
+  opacity: 0.9 !important;
+  border: 2px solid #868383 !important;
+}
+.btn:disabled {
+  cursor: pointer;
+  border: 2px solid #868383 !important;
+
+}
