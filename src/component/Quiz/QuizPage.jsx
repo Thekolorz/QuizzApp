@@ -341,29 +341,26 @@ class QuizPlay extends React.Component {
     }
 
     handleDisableButton = () => {
-      // if there is no previous question or if it is the first question
       if (this.state.previousQuestion === undefined || this.state.currentQuestionIndex === 0) {
-        this.setState ({
-          previousButtonDisabled: true
-        });
+          this.setState({
+              previousButtonDisabled: true
+          });
       } else {
-        this.setState({
-          previousButtonDisabled: false
-        });
+          this.setState({
+              previousButtonDisabled: false
+          });
       }
-      // if there is no next question or if it is the last question
+
       if (this.state.nextQuestion === undefined || this.state.currentQuestionIndex + 1 === this.state.numberOfQuestions) {
-        this.setState ({
-          // therefor  disable next button
-          nextButtonDisabled: true
-        });
+          this.setState({
+              nextButtonDisabled: true
+          });
       } else {
-        this.setState({
-          //otherwise enable next button
-          nextButtonDisabled: false
-        });
+          this.setState({
+              nextButtonDisabled: false
+          });
       }
-    }
+  }
 
   render() {
     const { 
@@ -434,7 +431,7 @@ class QuizPlay extends React.Component {
                 </div>
                 <div className="button-contaier">
                   <MDBBtn 
-                    className={classnames('', {'disable': this.state.previousButtonDisabled})}
+                        className={classnames('', {'btn-disable': this.state.nextButtonDisabled})}
                     id="previous-button"
                     onClick={this.handleButtonClick} 
                     outline color="white">
@@ -443,7 +440,7 @@ class QuizPlay extends React.Component {
                   </MDBBtn>
 
                   <MDBBtn 
-                    className={classnames('', {'disable': this.state.nextButtonDisabled})}
+                    className={classnames('', {'btn-disable': this.state.nextButtonDisabled})}
                     id="next-button" 
                     onClick={this.handleButtonClick} 
                     color="white">
