@@ -53,7 +53,7 @@ class QuizPlay extends React.Component {
       fiftyFifty: 2,
       usedFiftyFifty: false,
       // to prevent a random number that has been generated before 
-      previousRandomNumbers:[],
+      previousRandomNumbers: [],
       nextButtonDisabled: false,
       previousButtonDisabled: true,
       previousRandomNumbers: [],
@@ -85,7 +85,7 @@ class QuizPlay extends React.Component {
         // to make the hints work when we have only one hints left. => says to go back to empty array when the question changes but this one make it goes minues and works as well so we add an if to hints method
         previousRandomNumbers: []
         // to make the hints work when we have only 1 left because at this point the random number is part of the array and it doesn't work anymore
-      }, () => { 
+      }, () => {
         this.showOptions();
         // we use this to bring back our options when the question is changed 
       });
@@ -139,7 +139,7 @@ class QuizPlay extends React.Component {
   handleQuitButtonClick = () => {
     this.playButtonSound();
     if (window.confirm('Are you sure you want to quit?')) {
-     // to take us back to homepage
+      // to take us back to homepage
       this.props.history.push('/');
     }
   };
@@ -175,7 +175,7 @@ class QuizPlay extends React.Component {
 
   // handling wrong Answer 
   WrongAnswer = () => {
-    
+
     M.toast({
       html: 'Wrong Answer',
       classes: 'toast-invalid',
@@ -208,18 +208,22 @@ class QuizPlay extends React.Component {
       this.displayQuestions(this.state.questions, this.state.currentQuestion, this.state.nextQuestion, this.state.previousQuestion); // to change to another question 
     });
   }
-// to undo the effect of hiding options due to using hints and we should call it at the end of display method options
-showOptions = () => {
-  const options = Array.from(document.querySelectorAll('.option'));
-  options.forEach((option) => {
-    option.style.visibility = 'visible';
-  });
-}
+  // to undo the effect of hiding options due to using hints and we should call it at the end of display method options
+  showOptions = () => {
+    const options = Array.from(document.querySelectorAll('.option'));
+    options.forEach((option) => {
+      option.style.visibility = 'visible';
+    });
+    this.setState({
+      // to reset the status of 50/50 to false after a new question
+        usedFiftyFifty: false
+    });
+  }
 
-// handle hints and hides one option 
+  // handle hints and hides one option 
   handleHints = () => {
     // to prevent function being called when we don't have any hints left(hints goes minus) and we bring everything in if
-    if (this.state.hints>0 ) {
+    if (this.state.hints > 0) {
       const options = Array.from(document.querySelectorAll('.option'));
       // query selector returns a node list which is like an array that's why we make an array
       // to get the index of the option that has the answers when we click on the hint icon
@@ -235,30 +239,74 @@ showOptions = () => {
       // if the random number matches that index => hide that option
       while (true) {
         const randomNumber = Math.round(Math.random() * 3);
-          // to prevent a random number that has been generated before we check it by adding the include on if statement ( simply saying don't include the pre-generated one) 
+        // to prevent a random number that has been generated before we check it by adding the include on if statement ( simply saying don't include the pre-generated one) 
         if (randomNumber !== indexOfAnswer && !this.state.previousRandomNumbers.includes(randomNumber)) {
           // to look through each option and if the index doesn't match to answer hide that option
-          options.forEach((option, index) =>{
+          options.forEach((option, index) => {
             if (index === randomNumber) {
               option.style.visibility = 'hidden';
-              this.setState((prevState) =>({
-                hints:prevState.hints -1,
+              this.setState((prevState) => ({
+                hints: prevState.hints - 1,
                 // and now we should append or push the generated number to our random number array if it does the if statement won't run and would generate another number
-                previousRandomNumbers:prevState.previousRandomNumbers.concat(randomNumber)
-            }));
-          }
-        });
-        break;
+                previousRandomNumbers: prevState.previousRandomNumbers.concat(randomNumber)
+              }));
+            }
+          });
+          break;
         }
         // to not have an infinit loop if user uses all of the hints we
-        if (this.state.previousRandomNumbers.length >=3)break;
+        if (this.state.previousRandomNumbers.length >= 3) break;
       }
     }
-   
+
+  }
+
+  handleFiftyFifty = () => {
+    if (this.state.fiftyFifty > 0 && this.state.usedFiftyFifty === false) {
+      const options = document.querySelectorAll('.option');
+      const randomNumbers = [];
+      let indexOfAnswer;
+
+      options.forEach((option, index) => {
+        if (option.innerHTML.toLowerCase() === this.state.answer.toLowerCase()) {
+          indexOfAnswer = index;
+        }
+      });
+
+      let count = 0;
+      do {
+        const randomNumber = Math.round(Math.random() * 3);
+        if (randomNumber !== indexOfAnswer) {
+          if (randomNumbers.length < 2 && !randomNumbers.includes(randomNumber) && !randomNumbers.includes(indexOfAnswer)) {
+            randomNumbers.push(randomNumber);
+            count++;
+          } else {
+            while (true) {
+              const newRandomNumber = Math.round(Math.random() * 3);
+              if (!randomNumbers.includes(newRandomNumber) && newRandomNumber !== indexOfAnswer) {
+                randomNumbers.push(newRandomNumber);
+                count++;
+                break;
+              }
+            }
+          }
+        }
+      } while (count < 2);
+
+      options.forEach((option, index) => {
+        if (randomNumbers.includes(index)) {
+          option.style.visibility = 'hidden';
+        }
+      });
+      this.setState(prevState => ({
+        fiftyFifty: prevState.fiftyFifty - 1,
+        usedFiftyFifty: true
+      }));
+    }
   }
 
   render() {
-    const { currentQuestion, currentQuestionIndex, numberOfQuestions, hints } = this.state;
+    const { currentQuestion, currentQuestionIndex, numberOfQuestions, hints, fiftyFifty } = this.state;
 
     return (
 
@@ -282,8 +330,11 @@ showOptions = () => {
                   ‍<h2> QUIZ PLAYGROUND </h2>
                   <div className="lifeLine-container" >
                     <p>
-                      <span className="lifeLine" > <IconButton color="inherit">
-                        <FavoriteBorderOutlinedIcon className="lifeLine-icon" /> </IconButton> 2 </span>
+                      <span className="lifeLine" >
+                        <IconButton color="inherit">
+                          <FavoriteBorderOutlinedIcon onClick={this.handleFiftyFifty} className="lifeLine" /> </IconButton>
+                        {fiftyFifty}
+                      </span>
                     </p>
                     <p>
                       <span className="lifeLine" > <IconButton onClick={this.handleHints} color="inherit">
@@ -300,12 +351,12 @@ showOptions = () => {
                     </p>
                   </div>
 
-                
+
 
                   <h5> {currentQuestion.question} </h5>
                   <div className="option-container">
 
-                    <MDBBtn  onClick={this.handleOptionClick} className="option" tag="a" size="lg" floating gradient="purple">{currentQuestion.optionA}</MDBBtn>
+                    <MDBBtn onClick={this.handleOptionClick} className="option" tag="a" size="lg" floating gradient="purple">{currentQuestion.optionA}</MDBBtn>
                     <MDBBtn onClick={this.handleOptionClick} className="option" tag="a" size="lg" floating gradient="purple">{currentQuestion.optionB}</MDBBtn>
 
                   </div>
