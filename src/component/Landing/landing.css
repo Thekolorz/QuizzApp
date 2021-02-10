@@ -45,7 +45,7 @@ h1 {
   transition: backgroundColor 0.5s ease-in-out , padding 0.5s ease-in-out !important;
 }
 
-#classicformpage .top-nav-collapse,
+#classicformpage .top-nav-collapse
  {
   background: #424f95 !important;
 }
@@ -60,10 +60,7 @@ h1 {
   }
 }
 
-#classicformpage label,
-.quizPage {
-  color: #fff !important;
-}
+
 .col-md-12.mb-4.white-text.text-center {
   margin-right: 16px;
   max-width: 500px;
@@ -91,9 +88,12 @@ section {
   background-color:rgba(92, 16, 159, 0.303) !important;
   color: #fff !important;
 }
-.lifeLine-container {
+.lifeLine-container, 
+.Timer-Container {
   display: flex;
   justify-content: space-between;
+  height: 40px !important;
+  width: 100%  !important;
 }
 
 .lifeLine {
@@ -121,9 +121,7 @@ h5 {
    width: 60% !important;
  
 }
-.btn-default:hover { 
-  background-color:#424f95 !important;
-}
+
 .a.btn{
    font-size: 1rem !important;
     padding: 16px !important;
@@ -141,26 +139,6 @@ a.btn,
   padding-left: 16px !important;
     align-items: initial;
     display: flex;
-}
-@media (min-width: 768px) {
-.pl-md-5, .px-md-5 {
-    padding-left: 0!important; 
-    padding-left: 16px !important;
-    align-items: left !important;
-    display: flex;
-}
-}
-@media (min-width: 768px){
-.pl-md-5, .px-md-5 {
-    padding-left: 0!important;
-}
-.pb-3, .py-3 {
-    padding-bottom: 0 !important; 
-}
-.pt-3, .py-3 {
-    padding-top: 0 !important; 
-    margin-left: 0 !important; 
-}
 }
 
 .btn, .btn-large, .btn-small, .btn-flat {
@@ -182,12 +160,31 @@ a.btn,
   background-color: none !important;
 }
 .toast-valid {
-  background-color:rgb(18, 11, 118) !important;
+  background-color:rgb(170, 210, 77) !important;
   border-radius: 5px !important;
-  color: #fff !important;
+  color: rgb(0, 0, 0) !important;
+  font-size: 1rem;
 }
 .toast-invalid {
   background-color:rgb(179, 4, 124) !important;
   border-radius: 5px !important;
   color: #fff !important;
+}
+
+.lifeLine-icon {
+  color: rgb(83, 216, 16) !important;
+  cursor: pointer;
+}
+
+.lifeLine-icon:hover {
+  background: none;
+  color: rgb(238, 78, 10) !important;
+  cursor: pointer;
+}
+.option:hover {
+  background: rgb(238, 78, 10) !important;
+  cursor: pointer;
+}
+.btn-default:hover { 
+  background:#102dce !important;
 }

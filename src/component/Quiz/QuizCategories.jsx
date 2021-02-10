@@ -29,7 +29,7 @@ export default function quiz() {
           <MDBContainer>
             <div class="categories">
               <Fragment>
-                <Link to="/QuizPage" ><MDBBtn color="elegant">Books</MDBBtn></Link>
+                <Link to="/QuizPage" ><MDBBtn color="red">Books</MDBBtn></Link>
                 <MDBBtn color="unique">History</MDBBtn>
                 <MDBBtn color="pink">Celebrities</MDBBtn>
                 <MDBBtn color="purple">Movie</MDBBtn>
