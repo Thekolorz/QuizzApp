@@ -59,11 +59,14 @@ class QuizPlay extends React.Component {
       previousRandomNumbers: [],
       time: {}
     };
+    // to set the timer
+    this.interval= null;
   }
   // to display the questions
   componentDidMount() {
     const { questions, currentQuestion, nextQuestion, previousQuestion } = this.state;
     this.displayQuestions(questions, currentQuestion, nextQuestion, previousQuestion);
+    this.startTimer ();
 
   }
 
@@ -216,7 +219,7 @@ class QuizPlay extends React.Component {
     });
     this.setState({
       // to reset the status of 50/50 to false after a new question
-        usedFiftyFifty: false
+      usedFiftyFifty: false
     });
   }
 
@@ -304,20 +307,54 @@ class QuizPlay extends React.Component {
       }));
     }
   }
+  startTimer = () => {
+    const countDownTime = Date.now() + 180000;
+    this.interval = setInterval(() => {
+      const now = new Date();
+      const distance = countDownTime - now;
+
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      // to set time up 
+      if (distance < 0) {
+        clearInterval(this.interval);
+        this.setState({
+          time: {
+            minutes: 0,
+            seconds: 0
+          }
+        }, () => {
+          this.endGame();
+        });
+        // to update time if they still have time
+      } else {
+        this.setState({
+          time: {
+            minutes,
+            seconds,
+            distance
+          }
+        });
+      }
+    }, 1000);
+  }
+
 
   render() {
-    const { currentQuestion, currentQuestionIndex, numberOfQuestions, hints, fiftyFifty } = this.state;
+    const { 
+      currentQuestion, 
+      currentQuestionIndex, 
+      numberOfQuestions, 
+      hints, 
+      fiftyFifty,
+      time
+   } = this.state;
 
     return (
 
-
-
       <div id="classicformpage">
-
         < Navigation />
-
         <MDBView>
-
           <MDBMask className="d-flex justify-content-right align-items-center gradient">
             <MDBContainer>
               <Fragment>
@@ -346,7 +383,7 @@ class QuizPlay extends React.Component {
                       <span className="lifeLine" > {currentQuestionIndex + 1} of {numberOfQuestions}</span>
                     </p>
                     <p>
-                      <span className="lifeLine" > <IconButton color="inherit"> <HourglassEmptyOutlinedIcon />  00:10
+                      <span className="lifeLine" > <IconButton color="inherit"> <HourglassEmptyOutlinedIcon />  {time.minutes}:{time.seconds}
                         </IconButton></span>
                     </p>
                   </div>
