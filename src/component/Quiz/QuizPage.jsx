@@ -145,7 +145,7 @@ playButtonSound = () => {
     });
   }
   render() {
-    const { currentQuestion } = this.state;
+    const { currentQuestion, currentQuestionIndex, numberOfQuestions } = this.state;
 
     return (
      
@@ -181,7 +181,7 @@ playButtonSound = () => {
                   <div className = "Timer-container">
                     <MDBRow className="mx-md-n5">
                       <MDBCol size="6" className="left py-3 px-md-5">
-                        1 of 15
+                        {currentQuestionIndex +1 } of { numberOfQuestions}
                        </MDBCol>
 
                       <MDBCol size="6" className="right py-3 px-md-5">
