@@ -9,6 +9,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'mdbreact/dist/css/mdb.css'; 
 import QuizPage from './component/Quiz/QuizPage';
 import QuizCategories from './component/Quiz/QuizCategories';
+import QuizSummary from './component/Quiz/QuizSummary';
 import { Link } from "react-router-dom";
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Route path="/" exact component={landingPage} />      
         <Route path="/QuizPage" exact component={QuizPage} /> 
         <Route path="/QuizCategories" exact component={QuizCategories} /> 
+        <Route path="/QuizSummary" exact component={QuizSummary} /> 
         
        
 

@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react';
 import 'react-router-dom';
-import { Button } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 
 import {
@@ -10,7 +9,8 @@ import {
   MDBContainer,
   MDBIcon,
   MDBCol,
-  MDBRow
+  MDBRow,
+  Button
 } from "mdbreact";
 import Navigation from '../Landing/Navigation';
 import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
@@ -20,7 +20,8 @@ import HighlightOutlinedIcon from '@material-ui/icons/HighlightOutlined';
 import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
 import CloseIcon from '@material-ui/icons/Close';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
-import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos'; import '../Landing/landing.css';
+import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos'; 
+import '../Landing/landing.css';
 
 import M from 'materialize-css';
 import classnames from 'classnames';
@@ -389,8 +390,8 @@ class QuizPlay extends React.Component {
         hintsUsed: 5 - state.hints
     };
     setTimeout(() => {
-        /* this.props.history.push('/play/quizSummary', playerStats); */
-        this.props.history.push('/');
+        this.props.history.push('/QuizSummary', playerStats);
+        
     }, 800);
 }
 
