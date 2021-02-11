@@ -61,6 +61,9 @@ class QuizPlay extends React.Component {
     };
     // to set the timer
     this.interval= null;
+    this.correctSound= React.createRef();
+    this.wrongSound = React.createRef();
+    this.buttonSound = React.createRef();
   }
     // to display the questions
     componentDidMount() {
@@ -104,15 +107,15 @@ class QuizPlay extends React.Component {
       // to check if the user selected the correct option
       if (e.target.text.toLowerCase() === this.state.answer.toLowerCase()) {
         setTimeout(() => {
-          document.getElementById('correct-sound').play();
-        }, 500)
+          // return the dom element with this ref and play it
+          this.correctSound.current.play();
+        }, 300)
         // so that if answered quickly still the audio plays
         this.correctAnswer();
       } else {
         setTimeout(() => {
-          document.getElementById('wrong-sound').play();
-        }, 500)
-
+          this.wrongSound.current.play();
+        }, 300)
         this.WrongAnswer();
       }
     }
@@ -176,7 +179,7 @@ class QuizPlay extends React.Component {
     };
 
     playButtonSound = () => {
-      document.getElementById('button-sound').play();
+      this.buttonSound.current.play();
     }
 
     // handling wrong Answer 
@@ -388,7 +391,7 @@ class QuizPlay extends React.Component {
     setTimeout(() => {
         /* this.props.history.push('/play/quizSummary', playerStats); */
         this.props.history.push('/');
-    }, 1000);
+    }, 800);
 }
 
   render() {
@@ -409,9 +412,9 @@ class QuizPlay extends React.Component {
           <MDBMask className="d-flex justify-content-right align-items-center gradient">
             <MDBContainer>
               <Fragment>
-                <audio id="correct-sound" src={correctNotification}></audio>
-                <audio id="wrong-sound" src={wrongNotification}></audio>
-                <audio id="button-sound" src={buttonSound}></audio>
+                <audio ref={this.correctSound} src={correctNotification}></audio>
+                <audio ref={this.wrongSound} src={wrongNotification}></audio>
+                <audio ref={this.buttonSound} id="button-sound" src={buttonSound}></audio>
               </Fragment>
               <Fragment>
                 <div className="questions">
