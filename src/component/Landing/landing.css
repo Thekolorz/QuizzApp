@@ -21,7 +21,7 @@ h1 {
     rgba(0, 0, 0, 0.7) !important,
     rgba(72, 15, 144, 0.4) 100%
   );
-  background: -webkit-gradient(
+  background: gradient(
     linear,
     45deg,
     from(rgba(0, 0, 0, 0.7), rgba(72, 15, 144, 0.4) 100%)
@@ -179,12 +179,25 @@ a.btn,
 .lifeLine-icon:hover {
   background: none;
   color: rgb(238, 78, 10) !important;
-  cursor: pointer;
+  
 }
 .option:hover {
   background: rgb(238, 78, 10) !important;
+  background-color:none !important;
   cursor: pointer;
 }
 .btn-default:hover { 
   background:#102dce !important;
+}
+.disable {
+  color: #868383!important;
+  box-shadow: none !important;
+  pointer-events: none;
+  opacity: 0.9 !important;
+  border: 2px solid #868383 !important;
+}
+.btn:disabled {
+  cursor: pointer;
+  border: 2px solid #868383 !important;
+
 }
