@@ -15,7 +15,7 @@ app.use(cors()) // We're telling express to use CORS
 app.use(express.json()) // we need to tell server to use json as well
 app.use('/routes', quizRoutes) // tells the server to use the routes in routes.js
 
-mongoose.connect('mongodb+srv://user:user@cluster0.1jadn.mongodb.net/quizz?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb+srv://user:user@cluster0.1jadn.mongodb.net/quizz?authSource=admin&replicaSet=atlas-ugo760-shard-0&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
 const db = mongoose.connection
 db.on('error', (error) => console.error(error))
 db.once('open', () => console.log('database connected'))
