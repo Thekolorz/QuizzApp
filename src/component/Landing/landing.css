@@ -1,4 +1,6 @@
-
+.md-form label {
+  color: #fff !important;
+}
 h1 {
   font-weight: bold;
 }

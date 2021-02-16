@@ -64,7 +64,7 @@ class ClassicFormPage extends React.Component {
 
                   <Link to="/challengeFriends">
                   <MDBBtn outline color="white">
-                    Challenge your friends
+                    Join a Challenge 
                   </MDBBtn> 
                   </Link>
                 </MDBAnimation>
@@ -77,12 +77,13 @@ class ClassicFormPage extends React.Component {
                           <MDBIcon icon="user" /> Register:
                         </h3>
                         <hr className="hr-light" />
-                        <MDBInput
+                        <MDBInput color="white"
                           className="white-text"
                           iconClass="white-text"
                           label="Your name"
                           icon="user" />
                         <MDBInput
+                          color="white"
                           className="white-text"
                           iconClass="white-text"
                           label="Your email"
