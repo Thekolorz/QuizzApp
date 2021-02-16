@@ -40,7 +40,7 @@ class FixedNavbarExample extends React.Component {
                 </MDBNavItem>
 
                 <MDBNavItem>
-                  <MDBNavLink to="#">Options</MDBNavLink>
+                  <MDBNavLink to="#">Join a Quiz</MDBNavLink>
                 </MDBNavItem>
               </MDBNavbarNav>
               <MDBNavbarNav right>

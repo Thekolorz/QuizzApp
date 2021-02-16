@@ -1,25 +1,12 @@
 import React from 'react';
-import 'react-router-dom';
-import "../src/App.css";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import landingPage from './component/Landing/landingPage';
-import navigation from './component/Landing/Navigation';
-import './index.css';
-import 'bootstrap/dist/css/bootstrap.min.css'; 
-import 'mdbreact/dist/css/mdb.css'; 
-import QuizPage from './component/Quiz/QuizPage';
-import QuizCategories from './component/Quiz/QuizCategories';
-import QuizSummary from './component/Quiz/QuizSummary';
-import challengeFriends from './component/challenge/challengeFriends';
-import { Link } from "react-router-dom";
-
+import ReactDOM from 'react-dom';
 import AppRouter, { history } from './routers/AppRouter';
 import configureStore from './store/configureStore';
 import { Provider } from 'react-redux';
-import LoadingPage from './component/Multiplayer/components/LoadingPage';
-import { setCategories, setQuestion, setMessage, setStatus, setScoreboard, resetGame} from './component/Multiplayer/actions/game';
-import { addPlayer, removePlayer, setStroke, setScore, resetStroke, setPlayers } from './component/Multiplayer/actions/players';
-import {resetType} from './component/Multiplayer/actions/clientType'
+import LoadingPage from './components/LoadingPage';
+import { setCategories, setQuestion, setMessage, setStatus, setScoreboard, resetGame} from './actions/game';
+import { addPlayer, removePlayer, setStroke, setScore, resetStroke, setPlayers } from './actions/players';
+import {resetType} from './actions/clientType'
 
 
 import 'normalize.css/normalize.css';
@@ -109,26 +96,3 @@ const jsx = (
 
 
 ReactDOM.render(jsx, document.getElementById("app"));
-
-function App() {
-  return (
-    <Router>
-    <div className="App">
-      <Switch>
-        <Route path="/" exact component={landingPage} />   
-        <Route path="/QuizPage" exact component={QuizPage} /> 
-        <Route path="/QuizCategories" exact component={QuizCategories} /> 
-        <Route path="/QuizSummary" exact component={QuizSummary} /> 
-        <Route path="/challengeFriends" exact component={challengeFriends} /> 
-
-        
-       
-
-      </Switch>
-
-    </div>
-  </Router>
-  );
-}
-
-export default App;

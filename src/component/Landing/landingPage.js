@@ -57,14 +57,16 @@ class ClassicFormPage extends React.Component {
                   <h6 className="mb-4">
                     Here is a platform you enjoy questioning and being questioned about.
                   </h6>
-                  <MDBBtn color="white" >
-                    Challenge yourSelf
-                  </MDBBtn>
+                  <Link to="/"><MDBBtn color="white" >
+                      Host A Challenge 
+                  </MDBBtn> </Link>
 
 
+                  <Link to="/challengeFriends">
                   <MDBBtn outline color="white">
                     Challenge your friends
-                  </MDBBtn>
+                  </MDBBtn> 
+                  </Link>
                 </MDBAnimation>
 
                 <MDBCol md="6" xl="5" className="mb-4">
