@@ -126,7 +126,7 @@ class FormsPage extends React.Component {
                 </MDBRow>
 
                 <MDBBtn color="white" type="submit">
-                  Join
+                  Create 
           </MDBBtn>
               </form>
             </MDBContainer>
