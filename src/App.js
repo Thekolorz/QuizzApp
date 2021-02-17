@@ -10,6 +10,8 @@ import 'mdbreact/dist/css/mdb.css';
 import QuizPage from './component/Quiz/QuizPage';
 import QuizCategories from './component/Quiz/QuizCategories';
 import QuizSummary from './component/Quiz/QuizSummary';
+import HostChallenge from './component/challenge/HostChallenge';
+import JoinChallenge from './component/challenge/JoinChallenge';
 import { Link } from "react-router-dom";
 
 function App() {
@@ -21,6 +23,8 @@ function App() {
         <Route path="/QuizPage" exact component={QuizPage} /> 
         <Route path="/QuizCategories" exact component={QuizCategories} /> 
         <Route path="/QuizSummary" exact component={QuizSummary} /> 
+        <Route path="/HostChallenge" exact component={HostChallenge} /> 
+        <Route path="/JoinChallenge" exact component={JoinChallenge} /> 
         
        
 

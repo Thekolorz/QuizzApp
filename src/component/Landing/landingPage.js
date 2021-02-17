@@ -6,6 +6,8 @@ import QuizCategories from '../Quiz/QuizCategories';
 import QuizPage from '../Quiz/QuizPage';
 import axios from 'axios';
 import Navigation from './Navigation';
+import HostChallenge from '../challenge/HostChallenge';
+import JoinChallenge from '../challenge/JoinChallenge';
 import {
   MDBNavbar,
   MDBNavbarNav,
@@ -28,6 +30,8 @@ import {
 } from "mdbreact";
 
 import "./landing.css";
+import { connect } from 'react-redux';
+import { setHost, setPlayer } from '../../actions/clientType';
 
 class ClassicFormPage extends React.Component {
 
@@ -57,12 +61,14 @@ class ClassicFormPage extends React.Component {
                   <h6 className="mb-4">
                     Here is a platform you enjoy questioning and being questioned about.
                   </h6>
-                  <Link to="/"><MDBBtn color="white" >
-                      Host A Challenge 
-                  </MDBBtn> </Link>
+            
+                  <Link to="/HostChallenge">
+                  <MDBBtn  color="white">
+                    Host a Challenge 
+                  </MDBBtn> 
+                  </Link>
 
-
-                  <Link to="/challengeFriends">
+                  <Link to="/JoinChallenge">
                   <MDBBtn outline color="white">
                     Join a Challenge 
                   </MDBBtn> 
