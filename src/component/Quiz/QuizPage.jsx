@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment , Component } from 'react';
 import 'react-router-dom';
 import { Link } from "react-router-dom";
 
@@ -35,7 +35,7 @@ import correctNotification from '../../assets/audio/correct-answer.mp3';
 import wrongNotification from '../../assets/audio/wrong-answer.mp3';
 import buttonSound from '../../assets/audio/button-sound.mp3';
 
-class QuizPlay extends React.Component {
+class QuizPlay extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -390,6 +390,7 @@ class QuizPlay extends React.Component {
         hintsUsed: 5 - state.hints
     };
     setTimeout(() => {
+      // redirecting to this rout and send playerStats data with 
         this.props.history.push('/QuizSummary', playerStats);
         
     }, 800);
@@ -464,7 +465,7 @@ class QuizPlay extends React.Component {
                 </div>
                 <div className="button-contaier">
                   <MDBBtn 
-                        className={classnames('', {'btn-disable': this.state.nextButtonDisabled})}
+                        className={classnames('', {'disable': this.state.previousButtonDisabled})}
                     id="previous-button"
                     onClick={this.handleButtonClick} 
                     outline color="white">
@@ -473,7 +474,7 @@ class QuizPlay extends React.Component {
                   </MDBBtn>
 
                   <MDBBtn 
-                    className={classnames('', {'btn-disable': this.state.nextButtonDisabled})}
+                    className={classnames('', {'disable': this.state.nextButtonDisabled})}
                     id="next-button" 
                     onClick={this.handleButtonClick} 
                     color="white">

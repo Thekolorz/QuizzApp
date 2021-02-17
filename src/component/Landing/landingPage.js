@@ -6,6 +6,8 @@ import QuizCategories from '../Quiz/QuizCategories';
 import QuizPage from '../Quiz/QuizPage';
 import axios from 'axios';
 import Navigation from './Navigation';
+import HostChallenge from '../challenge/HostChallenge';
+import JoinChallenge from '../challenge/JoinChallenge';
 import {
   MDBNavbar,
   MDBNavbarNav,
@@ -28,6 +30,8 @@ import {
 } from "mdbreact";
 
 import "./landing.css";
+import { connect } from 'react-redux';
+import { setHost, setPlayer } from '../../actions/clientType';
 
 class ClassicFormPage extends React.Component {
 
@@ -57,14 +61,18 @@ class ClassicFormPage extends React.Component {
                   <h6 className="mb-4">
                     Here is a platform you enjoy questioning and being questioned about.
                   </h6>
-                  <MDBBtn color="white" >
-                    Challenge yourSelf
-                  </MDBBtn>
+            
+                  <Link to="/HostChallenge">
+                  <MDBBtn  color="white">
+                    Host a Challenge 
+                  </MDBBtn> 
+                  </Link>
 
-
+                  <Link to="/JoinChallenge">
                   <MDBBtn outline color="white">
-                    Challenge your friends
-                  </MDBBtn>
+                    Join a Challenge 
+                  </MDBBtn> 
+                  </Link>
                 </MDBAnimation>
 
                 <MDBCol md="6" xl="5" className="mb-4">
@@ -75,12 +83,13 @@ class ClassicFormPage extends React.Component {
                           <MDBIcon icon="user" /> Register:
                         </h3>
                         <hr className="hr-light" />
-                        <MDBInput
+                        <MDBInput color="white"
                           className="white-text"
                           iconClass="white-text"
                           label="Your name"
                           icon="user" />
                         <MDBInput
+                          color="white"
                           className="white-text"
                           iconClass="white-text"
                           label="Your email"

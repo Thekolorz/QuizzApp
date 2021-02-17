@@ -1,0 +1,111 @@
+.md-form label,
+.md-form input {
+  color: #fff !important;
+}
+h1 {
+  font-weight: bold;
+}
+
+#classicformpage .view, {
+  background-image: url("https://i.ibb.co/7jyJLpR/back-Ground.png")!important;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  height: 100vh;
+}
+#classicformpage > div.view > div > div > div.button-contaier > button:nth-child(2) {
+  color: black !important;
+  margin: 12px  !important;
+}
+#classicformpage .gradient {
+  background: -webkit-linear-gradient(
+    45deg,
+    rgba(0, 0, 0, 0.7) !important,
+    rgba(72, 15, 144, 0.4) 100%
+  );
+  background: gradient(
+    linear,
+    45deg,
+    from(rgba(0, 0, 0, 0.7), rgba(72, 15, 144, 0.4) 100%)
+  );
+  background: linear-gradient(
+    45deg,
+    rgba(0, 0, 0, 0.7),
+    rgba(72, 15, 144, 0.4) 100%
+  );
+}
+
+#classicformpage .card{
+  background-color: rgba(126, 123, 215, 0.2) !important;
+}
+
+#classicformpage h6 {
+  line-height: 1.7 !important;
+}
+
+#classicformpage .navbar {
+  transition: backgroundColor 0.5s ease-in-out , padding 0.5s ease-in-out !important;
+}
+
+#classicformpage .top-nav-collapse
+ {
+  background: #424f95 !important;
+}
+#classicformpage > div:nth-child(1) > header > nav {
+  background: none !important ;
+}
+
+
+@media (max-width: 768px) {
+  #classicformpage .navbar:not(.top-nav-collapse) {
+    background: #424f95;
+  }
+}
+
+
+.col-md-12.mb-4.white-text.text-center {
+  margin-right: 16px;
+  max-width: 500px;
+  margin-left: 54%;
+}
+
+.categories {
+  margin-top : 64px;
+  margin-bottom : 24px;
+  padding:16px;
+}
+section {
+  background-image: url("https://i.ibb.co/7jyJLpR/back-Ground.png");
+}
+.heroCard {
+  color: #fff !important;
+}
+
+.hr-light {
+  border-top: 1px solid #fff;
+  margin-bottom: 5%;
+}
+
+
+label {
+  display: flex !important;
+  margin-bottom: 1rem !important;
+  position: relative;
+  font-size: 1rem;
+  color:white !important;
+  cursor: text;
+  transition: transform .2s ease-out, color .2s ease-out;
+  transform: translateY(12px);
+  transform-origin: 0% 100%;
+  max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+
+.custom-select {
+
+ 
+}
